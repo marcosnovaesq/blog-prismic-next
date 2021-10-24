@@ -39,13 +39,9 @@ export default function Home({ postsPagination }: HomeProps) {
     const body = await response.json();
     const newPosts = body.results.map(post => {
       return {
-        uid: post.slugs[0],
+        uid: post.uid,
         data: post.data,
-        first_publication_date: format(
-          new Date(post.first_publication_date),
-          'dd MMM uuuu',
-          { locale: ptBR }
-        ),
+        first_publication_date: post.first_publication_date,
       } as Post;
     });
     setPosts(prev => [...prev, ...newPosts]);
@@ -64,7 +60,13 @@ export default function Home({ postsPagination }: HomeProps) {
                   <h2>{value.data.title}</h2>
                   <p>{value.data.subtitle}</p>
                   <div>
-                    <span>{value.first_publication_date}</span>
+                    <span>
+                      {format(
+                        new Date(value.first_publication_date),
+                        'dd MMM uuuu',
+                        { locale: ptBR }
+                      )}
+                    </span>
                     <span>{value.data.author}</span>
                   </div>
                 </li>
@@ -97,13 +99,9 @@ export const getStaticProps: GetStaticProps = async () => {
         next_page: postsResponse.next_page ?? 'no-page',
         results: postsResponse.results.map(post => {
           return {
-            uid: post.slugs[0],
+            uid: post.uid,
             data: post.data,
-            first_publication_date: format(
-              new Date(post.first_publication_date),
-              'dd MMM uuuu',
-              { locale: ptBR }
-            ),
+            first_publication_date: post.first_publication_date,
           } as Post;
         }),
       },
