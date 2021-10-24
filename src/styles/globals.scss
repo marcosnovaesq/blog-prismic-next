@@ -5,3 +5,34 @@
 }
 
 // TODO
+
+:root {
+  --pink: #ff57b2;
+  --off-white: #f8f8f8;
+  --dark: #1a1d23;
+  --gray-100: #bbbbbb;
+  --gray-50: #d7d7d7;
+}
+
+html {
+  background: var(--dark);
+  font-family: Inter, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--off-white);
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
